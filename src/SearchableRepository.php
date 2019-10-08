@@ -20,13 +20,14 @@ class SearchableRepository extends EntityRepository
     /**
      * @param EntityManagerInterface $em     The EntityManager to use.
      * @param ClassMetadata          $class  The class descriptor.
-     * @param EngineManager          $engine The search engine manager
+     *
+     * @param EngineManager $engine The search engine manager
      */
-    public function __construct($em, ClassMetadata $class, EngineManager $engine)
+    public function __construct($em, ClassMetadata $class)
     {
         parent::__construct($em, $class);
 
-        $this->engine = $engine;
+        $this->engine = app()->make(EngineManager::class);
     }
 
     /**
